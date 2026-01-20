@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     float hInput;
     float vInput;
     Vector3 movement;
+    float speed = 9.0f;
+    float toNewtons = 100.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Speed
-        float speed = 5.0f;
-        Vector3 movement = new Vector3(hInput, 0, vInput) * speed;
+
+        Vector3 movement = new Vector3(hInput, 0, vInput) * speed * Time.deltaTime * toNewtons;
 
         // Regular Technique
         //transform.Translate (movement);

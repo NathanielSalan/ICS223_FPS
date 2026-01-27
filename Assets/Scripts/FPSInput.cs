@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Windows;
+//using UnityEngine.Windows;
 
 public class FPSInput : MonoBehaviour
 {
@@ -14,10 +14,11 @@ public class FPSInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    Vector3 movement = Vector3.forward * speed * Time.deltaTime;
-        //}
+        float horizonInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
+        Vector3 movement = new Vector3(horizonInput, 0, verticalInput) * speed * Time.deltaTime;
+
+        transform.Translate(movement);
     }
 }

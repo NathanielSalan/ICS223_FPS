@@ -5,6 +5,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject iguanaPrefab;
     [SerializeField] private Transform iguanaPawnPt;
+    [SerializeField] private UIManager uiManager;
     private GameObject enemy;
     private Vector3 spawnPoint = new Vector3(0, 0, 5);
     private int enemySpawn = 4;
@@ -12,11 +13,13 @@ public class SceneController : MonoBehaviour
     private GameObject[] enemies;
     private GameObject[] iguanas;
 
+    private int score = 0;
     void Start()
     {
         enemies =  new GameObject[enemySpawn];
         iguanas = new GameObject[iguanaSpawn];
         fillIguana();
+        uiManager.UpdateScore(score);
     }
 
     void fillIguana()

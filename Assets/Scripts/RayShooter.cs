@@ -6,15 +6,15 @@ public class RayShooter : MonoBehaviour
     private Camera cam;
 
     [SerializeField]
-    private int aimSize = 16;
+    //private int aimSize = 16;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
      cam = GetComponent<Camera>();   
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame

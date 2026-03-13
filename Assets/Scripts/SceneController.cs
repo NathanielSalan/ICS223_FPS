@@ -3,14 +3,36 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject iguanaPrefab;
+    [SerializeField] private Transform iguanaPawnPt;
     private GameObject enemy;
     private Vector3 spawnPoint = new Vector3(0, 0, 5);
     private int enemySpawn = 4;
+    private int iguanaSpawn = 5;
     private GameObject[] enemies;
+    private GameObject[] iguanas;
 
     void Start()
     {
-      enemies =  new GameObject[enemySpawn];
+        enemies =  new GameObject[enemySpawn];
+        iguanas = new GameObject[iguanaSpawn];
+        fillIguana();
+    }
+
+    void fillIguana()
+    {
+        for (int i = 0; i < iguanas.Length; i++)
+        {
+            if (iguanas[i] == null)
+            {
+                GameObject newIguana = Instantiate(iguanaPrefab) as GameObject;
+                newIguana.transform.position = iguanaPawnPt.position;
+                float angle = Random.Range(0, 360);
+                newIguana.transform.Rotate(0, angle, 0);
+                iguanas[i] = newIguana;
+            }
+
+        }
     }
 
     // Update is called once per frame

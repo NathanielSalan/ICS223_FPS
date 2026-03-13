@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class OptionsPopup : MonoBehaviour
 {
     [SerializeField] private UIManager UIManager;
+    [SerializeField] private SettingsPopup SettingsPopup;
     public void Open()
     {
         gameObject.SetActive(true);
@@ -19,6 +20,8 @@ public class OptionsPopup : MonoBehaviour
     public void OnSettingsButton()
     {
         Debug.Log("settings clicked");
+        Close();
+        SettingsPopup.Open();
     }
     public void OnExitGameButton()
     {

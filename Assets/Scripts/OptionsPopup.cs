@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class OptionsPopup : MonoBehaviour
 {
+    [SerializeField] private UIManager UIManager;
     public void Open()
     {
         gameObject.SetActive(true);
@@ -27,6 +28,7 @@ public class OptionsPopup : MonoBehaviour
     public void OnReturnToGameButton()
     {
         Debug.Log("return to game");
+        UIManager.SetGameActive(true);
         Close();
     }
 }

@@ -20,7 +20,7 @@ public class OptionsPopup : BasePopup
     public void OnReturnToGameButton()
     {
         Debug.Log("return to game");
-        UIManager.SetGameActive(true);
+        //UIManager.SetGameActive(true);
         Close();
     }
 }

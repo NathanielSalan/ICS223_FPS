@@ -10,6 +10,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private OptionsPopup optionsPopup;
     [SerializeField] private SettingsPopup settingsPopup;
 
+    private int popupsActive = 0;
+
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.POPUP_OPENED, onPopupOpened); 
+        Messenger.AddListener(GameEvent.POPUP_CLOSED, onPopupClosed);
+    }
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.POPUP_OPENED, onPopupOpened);
+        Messenger.RemoveListener(GameEvent.POPUP_CLOSED, onPopupClosed);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,9 +34,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !optionsPopup.IsActive() && !settingsPopup.IsActive())
+        //!optionsPopup.IsActive() && !settingsPopup.IsActive()
+        if (Input.GetKeyDown(KeyCode.Escape) && popupsActive == 0)
         {
-            SetGameActive(false);
+            //SetGameActive(false);
             optionsPopup.Open();
         }
     }
@@ -49,6 +63,23 @@ public class UIManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None; // let cursor move freely
             Cursor.visible = true; // show the cursor
             crossHair.gameObject.SetActive(false); // turn off the crosshair
+        }
+    }
+
+    private void onPopupOpened()
+    {
+        if (popupsActive == 0)
+        {
+            SetGameActive(false);
+        }
+        popupsActive++;
+    }
+    private void onPopupClosed()
+    {
+        popupsActive--;
+        if (popupsActive == 0)
+        {
+            SetGameActive(true);
         }
     }
 }

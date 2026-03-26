@@ -5,6 +5,8 @@ using UnityEngine;
 public class ReactiveTarget : MonoBehaviour
 {
     WanderingAI enemyAI;
+    bool isAlive = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,19 +21,24 @@ public class ReactiveTarget : MonoBehaviour
 
     public void ReactToHit()
     {
-        WanderingAI enemyAI = GetComponent<WanderingAI>();
-        if (enemyAI != null)
+        if (isAlive)
         {
-            enemyAI.ChangeState(EnemyStates.dead);
-        }
-        Animator enemyAnimator = GetComponent<Animator>();
-        if (enemyAnimator != null)
-        {
-            enemyAnimator.SetTrigger("Die");
-        }
-        //StartCoroutine(Die());
+            WanderingAI enemyAI = GetComponent<WanderingAI>();
+            if (enemyAI != null)
+            {
+                enemyAI.ChangeState(EnemyStates.dead);
+            }
+            Animator enemyAnimator = GetComponent<Animator>();
+            if (enemyAnimator != null)
+            {
+                enemyAnimator.SetTrigger("Die");
+            }
+            //StartCoroutine(Die());
 
-        Messenger.Broadcast(GameEvent.ENEMY_DEAD);
+            isAlive = false;
+            Messenger.Broadcast(GameEvent.ENEMY_DEAD);
+        }
+        
     }
     private IEnumerator Die()
     {

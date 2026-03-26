@@ -21,6 +21,14 @@ public class SceneController : MonoBehaviour
         fillIguana();
         uiManager.UpdateScore(score);
     }
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+    }
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.ENEMY_DEAD, OnEnemyDead);
+    }
 
     void fillIguana()
     {
@@ -54,5 +62,10 @@ public class SceneController : MonoBehaviour
 
         }
 
+    }
+    private void OnEnemyDead()
+    {
+        score++;
+        uiManager.UpdateScore(score);
     }
 }

@@ -30,6 +30,8 @@ public class ReactiveTarget : MonoBehaviour
             enemyAnimator.SetTrigger("Die");
         }
         //StartCoroutine(Die());
+
+        Messenger.Broadcast(GameEvent.ENEMY_DEAD);
     }
     private IEnumerator Die()
     {

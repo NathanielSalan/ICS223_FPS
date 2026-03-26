@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : ActiveDuringGameplay
 {
     // enum to set values by name instead of number.
     // makes code more readable!

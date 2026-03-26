@@ -33,6 +33,7 @@ public class SettingsPopup : MonoBehaviour
         Close();
         optionsPopup.Open();
         PlayerPrefs.SetInt("difficulty", (int)difficultySlider.value);
+        Messenger<int>.Broadcast(GameEvent.DIFFICULTY_CHANGED, (int)difficultySlider.value);
     }
 
     public void OnCancelButton()

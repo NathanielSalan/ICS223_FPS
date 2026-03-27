@@ -51,20 +51,20 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i] == null)
-            {
-                GameObject newEnemy = Instantiate(enemyPrefab) as GameObject;
-                WanderingAI ai = newEnemy.GetComponent<WanderingAI>();
-                ai.SetDifficulty(GetDifficulty());
-                newEnemy.transform.position = spawnPoint;
-                float angle = Random.Range(0, 360);
-                newEnemy.transform.Rotate(0, angle, 0);
-                enemies[i] = newEnemy;
-            }
+        //for(int i = 0; i < enemies.Length; i++)
+        //{
+        //    if (enemies[i] == null)
+        //    {
+        //        GameObject newEnemy = Instantiate(enemyPrefab) as GameObject;
+        //        WanderingAI ai = newEnemy.GetComponent<WanderingAI>();
+        //        ai.SetDifficulty(GetDifficulty());
+        //        newEnemy.transform.position = spawnPoint;
+        //        float angle = Random.Range(0, 360);
+        //        newEnemy.transform.Rotate(0, angle, 0);
+        //        enemies[i] = newEnemy;
+        //    }
 
-        }
+        //}
 
     }
     private void OnEnemyDead()

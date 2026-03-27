@@ -17,10 +17,12 @@ public class PlayerCharacter : MonoBehaviour
     private void Awake()
     {
         Messenger<float>.AddListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+        Messenger<int>.AddListener(GameEvent.PICKUP_HEALTH, OnPickupHealth);
     }
     private void OnDestroy()
     {
         Messenger<float>.RemoveListener(GameEvent.HEALTH_CHANGED, OnHealthChanged);
+        Messenger<int>.RemoveListener(GameEvent.PICKUP_HEALTH, OnPickupHealth);
     }
 
     public void Hit()
@@ -47,4 +49,16 @@ public class PlayerCharacter : MonoBehaviour
         healthbar.fillAmount = percentage;
         healthbar.color = healthColor;
     }
-}
+
+    public void OnPickupHealth(int healthAdded)
+    {
+        health += healthAdded;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        float healthPercent = ((float)health) / maxHealth;
+        Messenger<float>.Broadcast(GameEvent.HEALTH_CHANGED, healthPercent);
+    }
+
+   }
